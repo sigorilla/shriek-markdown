@@ -1,5 +1,20 @@
 var marked  = require('marked');
+var renderer = new marked.Renderer();
+
+renderer.heading = function (text, level) {
+  return text;
+};
+
+renderer.link = function (href, title, text) {
+  return href;
+};
+
+renderer.image = function (href, title, text) {
+  return href;
+};
+
 marked.setOptions({
+  renderer: renderer,
   tables: false,
   sanitize: true,
 });
