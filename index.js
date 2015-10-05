@@ -19,15 +19,15 @@ marked.setOptions({
   sanitize: true,
 });
 
-module.exports = function (messages) {
+module.exports = function (messages, callback) {
   try {
-    return messages.map(function (message) {
+    callback(null, messages.map(function (message) {
       var mdMessage = message;
       mdMessage.text = marked(message.text);
       return mdMessage;
-    });
+    }));
   } catch (err) {
-    console.log(err);
+    callback(err, null);
   }
 };
 
